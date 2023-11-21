@@ -1,0 +1,93 @@
+<resources>
+    <string name="app_name">AipetProject</string>
+
+    <string name="login_sukses">Login successful</string>
+    <string name="periksa_kembali_pengisian_anda">Double check your charging</string>
+    <string name="regristasi_gagal_periksa_kembali_pengisian_anda">Registration failed, check your filling again</string>
+    <string name="sign_up_berhasil_silahkan_login">Sign Up was successful, please log in!</string>
+    <string name="masukkan_email_anda">Enter your Email</string>
+    <string name="email_tidak_valid">Invalid email</string>
+    <string name="phone_tidak_valid">Invalid phone</string>
+    <string name="text_password">Enter your Password</string>
+    <string name="password_tidak_boleh_kurang_dari_8_karakter">Password must not be less than 8 characters</string>
+    <string name="masuk">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="text_email">Enter your Email</string>
+    <string name="hint_fullname">Enter your Fullname</string>
+    <string name="hint_username">Enter your Username</string>
+    <string name="fullname">Fullname</string>
+    <string name="username">Username</string>
+    <string name="phone">phone</string>
+    <string name="hint_phone">Enter your phone number</string>
+
+
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_list">List</string>
+    <string name="title_maps">Maps</string>
+    <string name="title_profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_language">language</string>
+    <string name="menu_logout">logout</string>
+    <string name="address">Address</string>
+    <string name="text_address">Enter your address</string>
+    <string name="sterilization">Sterilization</string>
+    <string name="text_sterilization">Neutered</string>
+    <string name="text_desciption">hello everyone my name hachiko</string>
+
+    <string-array name="data_name">
+        <item>Onigiri</item>
+        <item>Onisuka</item>
+        <!--        <item>Polowat</item>-->
+        <!--        <item>Nate</item>-->
+        <!--        <item>Waht</item>-->
+        <!--        <item>Awkwart</item>-->
+        <!--        <item>Shoku</item>-->
+        <!--        <item>Zhin</item>-->
+    </string-array>
+    <string-array name="data_breed">
+        <item>Bulldog</item>
+        <item>Bulldog</item>
+        <!--        <item>Bulldog</item>-->
+        <!--        <item>Husky</item>-->
+        <!--        <item>Husky</item>-->
+        <!--        <item>Husky</item>-->
+        <!--        <item>Husky</item>-->
+        <!--        <item>Husky</item>-->
+    </string-array>
+    <string-array name="data_age">
+        <item>1 Year</item>
+        <item>1 Year</item>
+        <!--        <item>2 Year</item>-->
+        <!--        <item>1 Year</item>-->
+        <!--        <item>2 Year</item>-->
+        <!--        <item>1 Month</item>-->
+        <!--        <item>2 Year</item>-->
+        <!--        <item>2 Year</item>-->
+    </string-array>
+    <string-array name="data_gender">
+        <item>Male</item>
+        <item>Male</item>
+        <!--        <item>Male</item>-->
+        <!--        <item>Male</item>-->
+        <!--        <item>Male</item>-->
+        <!--        <item>Female</item>-->
+        <!--        <item>Female</item>-->
+        <!--        <item>Female</item>-->
+    </string-array>
+
+    <string-array name="data_photo">
+        <item>@drawable/item_dog</item>
+        <item>@drawable/item_dog</item>
+        <!--        <item>@drawable/item_dog</item>-->
+        <!--        <item>@drawable/item_dog</item>-->
+        <!--        <item>@drawable/item_dog</item>-->
+        <!--        <item>@drawable/item_dog</item>-->
+        <!--        <item>@drawable/item_dog</item>-->
+        <!--        <item>@drawable/item_dog</item>-->
+    </string-array>
+
+
+</resources>

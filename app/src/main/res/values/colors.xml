@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="secondary_black">#80000000</color>
+    <color name="secondary2_black">#30000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="white_text_box">#FFF1F1F1</color>
+    <color name="default_white">#FFF9F9F9</color>
+    <color name="broken_white">#FFF1F1F1</color>
+    <color name="secondary_text_color">#FF524B6B</color>
+    <color name="primary_green">#FF445D48</color>
+    <color name="fade_primary_green">#80445D48</color>
+    <color name="text_intent">#FFFF9228</color>
+    <color name="secondary_primary_green">#FFB0D9B1</color>
+
+</resources>

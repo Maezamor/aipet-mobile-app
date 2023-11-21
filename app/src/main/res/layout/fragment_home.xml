@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/full_screen_destination"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/default_white"
+    android:orientation="vertical"
+    android:layout_marginBottom="70dp"
+    tools:context=".ui.home.HomeFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/HomeAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@drawable/appbar_background"
+                android:layout_margin="8dp"
+                android:elevation="12dp"
+                android:outlineSpotShadowColor="@color/black"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                app:menu="@menu/option_menu"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <ImageButton
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_filter"
+                    android:background="@android:color/transparent"
+                    android:layout_marginHorizontal="15dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dmsans_bold"
+                    android:text="Welcome Petlovers!"
+                    android:textSize="20sp"/>
+            </androidx.appcompat.widget.Toolbar>
+
+
+            <TextView
+                android:id="@+id/recomendationView"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dmsans_bold"
+                android:text="Recomendation Pet"
+                android:textSize="13dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/HomeAppBar"
+                app:layout_constraintTop_toBottomOf="@+id/HomeAppBar" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_listdog"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recomendationView" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</LinearLayout>
