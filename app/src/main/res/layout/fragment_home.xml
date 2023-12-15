@@ -31,12 +31,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-                <ImageButton
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_filter"
-                    android:background="@android:color/transparent"
-                    android:layout_marginHorizontal="15dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -57,9 +51,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/HomeAppBar"
                 app:layout_constraintTop_toBottomOf="@+id/HomeAppBar" />
-
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_listdog"
+                android:id="@+id/rv_listMatchDog"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
@@ -67,6 +60,61 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recomendationView" />
+            <TextView
+                android:id="@+id/allpetView"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dmsans_bold"
+                android:text="All Pet"
+                android:textSize="13dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@id/rv_listMatchDog"
+                app:layout_constraintStart_toStartOf="@id/rv_listMatchDog"
+                app:layout_constraintTop_toBottomOf="@+id/rv_listMatchDog" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_listdog"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/allpetView" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/error_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/progressBar"
+                android:textColor="@color/black"
+                tools:text="Request Timeout"
+                android:textSize="15sp"/>
+            <Button
+                android:id="@+id/retry_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/primary_green"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/error_msg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Try again" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

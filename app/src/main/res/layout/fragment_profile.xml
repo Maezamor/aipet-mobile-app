@@ -1,32 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/full_screen_destination"
     android:background="@color/default_white"
     tools:context=".ui.profile.ProfileFragment">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@drawable/profil_background"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@+id/constraint1"
-            app:layout_constraintEnd_toEndOf="@id/constraint1"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@id/constraint1"
-            app:layout_constraintTop_toTopOf="@id/constraint1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -166,7 +155,7 @@
 
             <TextView
                 android:id="@+id/tv_username"
-                android:layout_width="90dp"
+                android:layout_width="118dp"
                 android:layout_height="24dp"
                 android:paddingVertical="5dp"
                 android:paddingHorizontal="10dp"
@@ -245,9 +234,11 @@
                     app:layout_constraintStart_toEndOf="@+id/iconService"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
+                <ImageButton
+                    android:id="@+id/button_healthservice"
                     android:layout_width="25dp"
                     android:layout_height="27dp"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/ic_arrow2_black"
                     android:layout_marginEnd="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -294,10 +285,12 @@
                     app:layout_constraintStart_toEndOf="@+id/iconGuide"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
+                <ImageButton
+                    android:id="@+id/btn_guide"
                     android:layout_width="25dp"
                     android:layout_height="27dp"
                     android:src="@drawable/ic_arrow2_black"
+                    android:background="@android:color/transparent"
                     android:layout_marginEnd="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -343,9 +336,11 @@
                     app:layout_constraintStart_toEndOf="@+id/iconWeb"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
+                <ImageButton
+                    android:id="@+id/button_web"
                     android:layout_width="25dp"
                     android:layout_height="27dp"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/ic_arrow2_black"
                     android:layout_marginEnd="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -354,4 +349,3 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>

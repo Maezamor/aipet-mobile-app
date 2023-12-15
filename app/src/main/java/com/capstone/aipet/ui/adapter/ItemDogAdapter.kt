@@ -1,47 +1,72 @@
 package com.capstone.aipet.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.capstone.aipet.R
-import com.capstone.aipet.data.DummyDataDog
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.bumptech.glide.Glide
+import com.capstone.aipet.data.remote.response.dogs.ItemDogs
 import com.capstone.aipet.databinding.ItemDogBinding
-import com.capstone.aipet.ui.home.detaildog.DetailDogFragment
 
 
 class ItemDogAdapter(
-    private val listShirt: ArrayList<DummyDataDog>) : RecyclerView.Adapter<ItemDogAdapter.ListViewHolder>() {
-    class ListViewHolder(val binding: ItemDogBinding) :  RecyclerView.ViewHolder(binding.root) {
-        val photo: ImageView = binding.rvImage
-        val name: TextView = binding.rvName
-        val gender: TextView = binding.rvGender
-        val age: TextView = binding.rvAge
-        val breed: TextView = binding.rvBreed
+    private val callback: (dogs: ItemDogs) -> Unit)
+    : PagingDataAdapter<ItemDogs, DogsViewHolder>(DIFF_CALLBACK) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogsViewHolder {
+        Log.d("ItemDogAdapter", "onCreateViewHolder called")
+        val view = ItemDogBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return DogsViewHolder(view)
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemDogBinding.inflate(inflater, parent, false)
-        return ListViewHolder(binding)
-    }
+    override fun onBindViewHolder(holder: DogsViewHolder, position: Int) {
+        val item = getItem(position)
 
-    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val (name, breed, gender, age, photo) = listShirt[position]
-        holder.photo.setImageResource(photo)
-        holder.name.text = name
-        holder.breed.text = breed
-        holder.gender.text = gender
-        holder.age.text = age
-        holder.itemView.setOnClickListener { v ->
-            val activity = v!!.context as AppCompatActivity
-            val detailDogFragment = DetailDogFragment()
-            activity.supportFragmentManager.beginTransaction()
-                .replace(R.id.nav_host_fragment_activity_dashboard, detailDogFragment)
-                .addToBackStack(null)
-                .commit()
+        holder.view.root.setOnClickListener{
+            if (item != null) {
+                Log.d("ItemDogAdapter", "Data pada posisi $position: $item")
+                callback.invoke(item)
+            }else {
+                Log.e("ItemDogAdapter", "Item pada posisi $position adalah null.")
+            }
+        }
+        if (item != null){
+            holder.bind(item)
         }
     }
-    override fun getItemCount(): Int = listShirt.size
+
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ItemDogs>() {
+            override fun areItemsTheSame(oldItem: ItemDogs, newItem: ItemDogs): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: ItemDogs, newItem: ItemDogs): Boolean {
+                return oldItem.id == newItem.id
+            }
+        }
+    }
+
+}
+
+class DogsViewHolder(val view: ItemDogBinding): RecyclerView.ViewHolder(view.root) {
+    fun bind(item: ItemDogs) {
+        view.rvName.text = item.name
+        view.rvGender.text = item.gender
+        view.rvCaracter.text = item.character
+        view.rvAge.text = "${item.age} Year"
+
+        val drawable = CircularProgressDrawable(view.root.context)
+        drawable.strokeWidth = 5f
+        drawable.centerRadius = 30f
+        drawable.start()
+
+        Glide.with(itemView.context)
+            .load("https://storage.googleapis.com/aipet-storage/dog-image/ivana-la-tycZhR54Ddk-unsplash.jpg")
+            .placeholder(drawable)
+            .into(view.rvImage)
+
+    }
 }

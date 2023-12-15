@@ -1,4 +1,4 @@
-package com.capstone.aipet.ui.profile
+package com.capstone.aipet.ui.history
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

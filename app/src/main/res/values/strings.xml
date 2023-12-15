@@ -36,58 +36,16 @@
     <string name="sterilization">Sterilization</string>
     <string name="text_sterilization">Neutered</string>
     <string name="text_desciption">hello everyone my name hachiko</string>
+    <string name="filter">FILTER</string>
+    <string name="search_hint">search pet care</string>
+    <string name="history">History</string>
 
-    <string-array name="data_name">
-        <item>Onigiri</item>
-        <item>Onisuka</item>
-        <!--        <item>Polowat</item>-->
-        <!--        <item>Nate</item>-->
-        <!--        <item>Waht</item>-->
-        <!--        <item>Awkwart</item>-->
-        <!--        <item>Shoku</item>-->
-        <!--        <item>Zhin</item>-->
-    </string-array>
-    <string-array name="data_breed">
-        <item>Bulldog</item>
-        <item>Bulldog</item>
-        <!--        <item>Bulldog</item>-->
-        <!--        <item>Husky</item>-->
-        <!--        <item>Husky</item>-->
-        <!--        <item>Husky</item>-->
-        <!--        <item>Husky</item>-->
-        <!--        <item>Husky</item>-->
-    </string-array>
-    <string-array name="data_age">
-        <item>1 Year</item>
-        <item>1 Year</item>
-        <!--        <item>2 Year</item>-->
-        <!--        <item>1 Year</item>-->
-        <!--        <item>2 Year</item>-->
-        <!--        <item>1 Month</item>-->
-        <!--        <item>2 Year</item>-->
-        <!--        <item>2 Year</item>-->
-    </string-array>
-    <string-array name="data_gender">
-        <item>Male</item>
-        <item>Male</item>
-        <!--        <item>Male</item>-->
-        <!--        <item>Male</item>-->
-        <!--        <item>Male</item>-->
-        <!--        <item>Female</item>-->
-        <!--        <item>Female</item>-->
-        <!--        <item>Female</item>-->
-    </string-array>
 
-    <string-array name="data_photo">
-        <item>@drawable/item_dog</item>
-        <item>@drawable/item_dog</item>
-        <!--        <item>@drawable/item_dog</item>-->
-        <!--        <item>@drawable/item_dog</item>-->
-        <!--        <item>@drawable/item_dog</item>-->
-        <!--        <item>@drawable/item_dog</item>-->
-        <!--        <item>@drawable/item_dog</item>-->
-        <!--        <item>@drawable/item_dog</item>-->
-    </string-array>
+<!--    map options   -->
+    <string name="normal_type">Normal</string>
+    <string name="satellite_type">Satellite</string>
+    <string name="terrain_type">Terrain</string>
+    <string name="hybrid_type">Hybrid</string>
 
 
 </resources>

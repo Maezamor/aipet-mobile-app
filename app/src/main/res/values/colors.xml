@@ -12,5 +12,6 @@
     <color name="fade_primary_green">#80445D48</color>
     <color name="text_intent">#FFFF9228</color>
     <color name="secondary_primary_green">#FFB0D9B1</color>
+    <color name="red">#FFFF0909</color>
 
 </resources>

@@ -7,7 +7,7 @@
             android:title="@string/menu_language"
             app:showAsAction="never"/>
         <item
-            android:id="@+id/menu2"
+            android:id="@+id/menu_logout"
             android:title="@string/menu_logout"
             app:showAsAction="never" />
     </group>

@@ -25,4 +25,14 @@ object UserPreference {
         editor.remove("status")
         editor.apply()
     }
+    fun saveUserData(username: String, name: String, address: String, phone: String, email: String, userId: Int, context: Context) {
+        val editor = editorPreference(context, "onSignIn")
+        editor.putString("name", name)
+        editor.putString("address", address)
+        editor.putString("username", username)
+        editor.putString("phone", phone)
+        editor.putString("email", email)
+        editor.putInt("id", userId)
+        editor.apply()
+    }
 }

@@ -1,4 +1,4 @@
-package com.capstone.aipet.data
+package com.capstone.aipet.data.dummyTest
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

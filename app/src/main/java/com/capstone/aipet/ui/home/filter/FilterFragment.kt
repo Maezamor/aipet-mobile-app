@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.capstone.aipet.R
+import com.capstone.aipet.databinding.FragmentDetailDogBinding
+import com.capstone.aipet.databinding.FragmentFilterBinding
 
 class FilterFragment : Fragment() {
 
@@ -15,6 +17,7 @@ class FilterFragment : Fragment() {
     }
 
     private lateinit var viewModel: FilterViewModel
+    private lateinit var binding: FragmentFilterBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,5 +31,4 @@ class FilterFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(FilterViewModel::class.java)
         // TODO: Use the ViewModel
     }
-
 }

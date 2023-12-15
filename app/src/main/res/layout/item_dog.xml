@@ -2,26 +2,26 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cart_item_dog"
-    android:layout_width="160dp"
-    android:layout_height="194dp"
+    android:layout_width="match_parent"
+    android:layout_height="210dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
     app:cardCornerRadius="20dp"
     android:clickable="true"
-    android:layout_marginHorizontal="10dp"
+    android:layout_marginHorizontal="5dp"
     android:layout_marginVertical="6dp">
     
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         >
 
         <ImageView
             android:id="@+id/rv_image"
-            android:layout_width="160dp"
+            android:layout_width="match_parent"
             android:layout_height="101dp"
-            android:src="@drawable/item_dog"
-            android:background="@drawable/image_background"
+            tools:src="@tools:sample/avatars"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dmsans_bold"
-            android:text="Onisuka"
+            tools:text="Onisuka"
             android:layout_marginStart="10dp"
             android:layout_marginTop="8dp"
             android:textColor="@color/black"
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dmsans_regular"
-            android:text="Breed:"
+            android:text="Caracter:"
             android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
             android:textColor="@color/secondary_black"
@@ -53,11 +53,11 @@
             app:layout_constraintTop_toBottomOf="@id/rv_name" />
 
         <TextView
-            android:id="@+id/rv_breed"
+            android:id="@+id/rv_caracter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dmsans_regular"
-            android:text="Beagle"
+            tools:text="Beagle"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:layout_marginStart="5dp"
@@ -73,11 +73,11 @@
             android:background="@drawable/gender_background"
             android:fontFamily="@font/dmsans_regular"
             android:gravity="center"
-            android:text="Male"
+            tools:text="Male"
             android:textColor="@color/primary_green"
             android:textSize="12dp"
             app:layout_constraintStart_toStartOf="@+id/breedText"
-            app:layout_constraintTop_toBottomOf="@+id/rv_breed" />
+            app:layout_constraintTop_toBottomOf="@+id/rv_caracter" />
 
         <TextView
             android:id="@+id/rv_age"
@@ -87,19 +87,19 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/dmsans_regular"
             android:gravity="center"
-            android:text="1 Year"
+            tools:text="1 Year"
             android:textColor="@color/black"
             android:textSize="12dp"
             app:layout_constraintStart_toEndOf="@id/rv_gender"
-            app:layout_constraintTop_toBottomOf="@+id/rv_breed" />
+            app:layout_constraintTop_toBottomOf="@+id/rv_caracter" />
 
         <ImageView
             android:layout_width="22dp"
             android:layout_height="18dp"
-            android:layout_marginStart="32dp"
+            android:layout_marginEnd="20dp"
             android:src="@drawable/ic_love"
             app:layout_constraintBottom_toBottomOf="@+id/rv_age"
-            app:layout_constraintStart_toEndOf="@+id/rv_age"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/rv_age"
             app:layout_constraintVertical_bias="1.0" />
 

@@ -21,6 +21,7 @@ import com.capstone.aipet.data.remote.DataResult
 import com.capstone.aipet.data.remote.response.login.ResponseLogin
 import com.capstone.aipet.databinding.ActivityLoginBinding
 import com.capstone.aipet.pref.UserPreference
+import com.capstone.aipet.ui.onboarding.OnboardingActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -44,9 +45,9 @@ class LoginActivity : AppCompatActivity() {
         binding.btnIntent.setOnClickListener{
             onSignUpClick()
         }
-        binding.btnTest.setOnClickListener{
-            onTestClick()
-        }
+//        binding.btnTest.setOnClickListener{
+//            onTestClick()
+//        }
         ButtonEnable()
         setupAction()
 
@@ -54,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun onTestClick(){
-        val intent = Intent(this, DashboardActivity::class.java)
+        val intent = Intent(this, OnboardingActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -105,7 +106,7 @@ class LoginActivity : AppCompatActivity() {
                         is DataResult.Success -> {
                             processLogin(DataResult.data)
                             showLoading(false)
-                            val intent = Intent(this, DashboardActivity::class.java)
+                            val intent = Intent(this, OnboardingActivity::class.java)
                             startActivity(intent)
                             finish()
                             Toast.makeText(this, getString(R.string.login_sukses), Toast.LENGTH_LONG).show()
@@ -125,7 +126,7 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, data.message, Toast.LENGTH_LONG).show()
         } else {
             UserPreference.saveToken(data.loginResult.token, this)
-            finish()
+            UserPreference.saveUserData(data.loginResult.username, data.loginResult.name,data.loginResult.address,data.loginResult.phone,data.loginResult.email,data.loginResult.userId,this)
         }
     }
 

@@ -9,7 +9,7 @@ class ApiInterceptor(private var token: String): Interceptor {
         var request: Request = chain.request()
 
         request = if (request.header("No-Authentication") == null && token.isNotEmpty()) {
-            val finalToken = "Bearer $token"
+            val finalToken = "$token"
             request.newBuilder()
                 .addHeader("Authorization", finalToken)
                 .build()

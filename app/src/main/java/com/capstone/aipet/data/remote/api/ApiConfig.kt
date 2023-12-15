@@ -12,9 +12,8 @@ class ApiConfig {
         fun getApiService(context: Context): ApiService {
             val sharedPref = UserPreference.init(context, "onSignIn")
             val token = sharedPref.getString("token", null).toString()
-
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://192.168.100.183:8000/api/")
+                .baseUrl("http://34.124.203.199:8001/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(getInterceptor(token))
                 .build()

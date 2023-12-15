@@ -10,13 +10,20 @@
         android:name="com.capstone.aipet.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_listDogsFragment_to_detailDogsFragment"
+            app:destination="@id/navigation_detaildog" />
     </fragment>
-
     <fragment
-        android:id="@+id/navigation_list"
-        android:name="com.capstone.aipet.ui.list.ListResultFragment"
-        android:label="@string/title_list"
-        tools:layout="@layout/fragment_list_result" />
+        android:id="@+id/navigation_detaildog"
+        android:name="com.capstone.aipet.ui.home.detaildog.DetailDogFragment"
+        android:label="detaildog"
+        tools:layout="@layout/fragment_detail_dog"/>
+    <fragment
+        android:id="@+id/navigation_history"
+        android:name="com.capstone.aipet.ui.history.HistoryFragment"
+        android:label="@string/history"
+        tools:layout="@layout/fragment_history" />
 
     <fragment
         android:id="@+id/navigation_maps"

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rb_sterilization"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="neutered"
+    android:textSize="13sp"
+    android:layout_marginHorizontal="30dp"
+    android:fontFamily="@font/dmsans_bold"
+    android:buttonTint="@android:color/white"/>

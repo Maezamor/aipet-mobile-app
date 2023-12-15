@@ -1,32 +1,167 @@
 package com.capstone.aipet.ui.home.detaildog
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
 import com.capstone.aipet.R
+import com.capstone.aipet.ViewModelFactory
+import com.capstone.aipet.data.remote.DataResult
 import com.capstone.aipet.databinding.FragmentDetailDogBinding
+import com.capstone.aipet.ui.home.HomeFragment
+import com.capstone.aipet.ui.maps.MapsDetailFragment
 
 class DetailDogFragment : Fragment() {
 
 
 
-    private lateinit var viewModel: DetailDogViewModel
-    private lateinit var  binding: FragmentDetailDogBinding
+    private var _binding: FragmentDetailDogBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var dogName: String
+    private var dogId: Int? = null
+    private  var dogAvatar: String = ""
+    private lateinit var dogStory: String
+    private var dogType: Int? = null
+    private var dogShelter: Int? = null
+    private lateinit var  dogAge: String
+    private var dogSteril: Int? = null
+    private lateinit var detailMapsFragment: MapsDetailFragment
+    private val viewModel: DetailDogViewModel by viewModels {
+        ViewModelFactory(requireActivity())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_detail_dog, container, false)
+        _binding = FragmentDetailDogBinding.inflate(inflater, container, false)
+        return binding.root
 
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(DetailDogViewModel::class.java)
+        arguments?.let {
+            dogName = it.getString(EXTRA_NAME, "")
+            dogId = it.getInt(EXTRA_ID, 0)
+            dogAvatar = it.getString(EXTRA_AVATAR, "")
+            dogStory = it.getString(EXTRA_STORY, "")
+            dogShelter = it.getInt(EXTRA_SHELTER, 0)
+            dogAge = it.getString(EXTRA_AGE, "")
+            dogSteril = it.getInt(EXTRA_STERIL, 0)
+        }
+        viewModel.getDetailDogById(dogId ?: 0)
+        viewModel.checkoutDog(dogId ?: 0)
+        viewModel.detailDog.observe(viewLifecycleOwner) { response ->
+
+            val type = response.data?.type?.activityLevel
+            val steril = response.data?.gender?.name
+            val selter = response.data?.selter?.name
+            val imageSelter = response.data?.selter?.picture
+            val let = response.data?.selter?.let
+            val lon = response.data?.selter?.lon
+            val phoneShelter = response.data?.selter?.phone
+            Log.d("data let and lon in detail dog","${let} and ${lon}")
+
+
+            val bundle = Bundle()
+            bundle.putDouble(MapsDetailFragment.EXTRA_LAT, let!!)
+            bundle.putDouble(MapsDetailFragment.EXTRA_LONG, lon!!)
+            bundle.putString(MapsDetailFragment.EXTRA_SHELTER, selter)
+            bundle.putString(MapsDetailFragment.EXTRA_AVATAR, imageSelter)
+            bundle.putString(MapsDetailFragment.EXTRA_PHONE, phoneShelter)
+
+            binding.sterilizationText.text = steril
+            binding.breedText.text = type
+            binding.nameDogView.text = dogName
+            binding.textRescuestory.text = dogStory
+            binding.ageText.text = dogAge
+            binding.selterText.text = selter
+
+//            val bundle = Bundle().apply {
+//                putString("shelterName", selter)
+//                putString("shelterImage", imageSelter)
+//                putString("shelterLet", let)
+//                putString("shelterLon", lon)
+//                putString("shelterDescription", descriptionShelter)
+//            }
+
+            detailMapsFragment = MapsDetailFragment()
+            detailMapsFragment.arguments = bundle
+            binding.btnMaps.setOnClickListener{
+                val transaction = parentFragmentManager.beginTransaction()
+                transaction.replace(R.id.nav_host_fragment_activity_dashboard, detailMapsFragment)
+                transaction.addToBackStack(null)
+                transaction.commit()
+            }
+
+
+        }
+
+        Glide.with(this)
+            .load("https://storage.googleapis.com/aipet-storage/dog-image/ivana-la-tycZhR54Ddk-unsplash.jpg")
+            .skipMemoryCache(true)
+            .into(binding.dtImage)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Kembali ke HomeFragment saat tombol back ditekan
+                parentFragmentManager.popBackStack()
+            }
+        })
+        binding.dtBack.setOnClickListener{
+            requireActivity().onBackPressed()
+        }
+        binding.btnAddopt.setOnClickListener {
+                checkoutDog(dogId)
+        }
+
+    }
+    private fun checkoutDog(dogId: Int?) {
+
+        // Panggil metode checkoutDogs dari repository
+        viewModel.checkoutResult.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is DataResult.Loading -> {
+                    showLoading(true)
+                }
+                is DataResult.Success -> {
+                    showLoading(false)
+                    showToast("Checkout berhasil!")
+                    parentFragmentManager.popBackStack()
+                }
+                is DataResult.Error -> {
+                    showLoading(false)
+                    showToast("Checkout gagal: ${response.error}")
+                }
+
+                else -> {}
+            }
+        }
+    }
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+    private fun showLoading(state: Boolean){
+        binding.progressBar.isVisible = state
+    }
+
+    companion object{
+        const val EXTRA_NAME = "extra_name"
+        const val EXTRA_ID = "extra_id"
+        const val EXTRA_AVATAR = "extra_avatar"
+        const val EXTRA_STORY = "extra_story"
+        const val EXTRA_TYPE = "extra_type"
+        const val EXTRA_SHELTER = "extra_shelter"
+        const val EXTRA_AGE = "extra_age"
+        const val EXTRA_STERIL = "extra_steril"
+
 
     }
 

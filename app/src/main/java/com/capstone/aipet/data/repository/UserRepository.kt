@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.capstone.aipet.data.remote.DataResult
 import com.capstone.aipet.data.remote.api.ApiService
+import com.capstone.aipet.data.remote.response.dogs.DetailDogResponse
 import com.capstone.aipet.data.remote.response.login.ResponseLogin
 import com.capstone.aipet.data.remote.response.register.ResponseRegister
 

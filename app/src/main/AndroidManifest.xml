@@ -17,9 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AipetProject"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.Guide.GuideActivity"
-            android:exported="false" />
+
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -35,6 +33,15 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD4it1PwLXMQvLzkn7B_ELn56kUnQNie2g" />
 
+        <activity
+            android:name=".ui.healthservice.PetCareActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Guide.GuideActivity"
+            android:exported="false" />
         <activity
             android:name=".DashboardActivity"
             android:exported="false"

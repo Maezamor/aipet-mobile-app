@@ -8,11 +8,18 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.capstone.aipet.databinding.ActivityDashboardBinding
 import com.capstone.aipet.ui.home.detaildog.DetailDogFragment
+import com.capstone.aipet.ui.maps.MapsDetailFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class DashboardActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDashboardBinding
+//    companion object {
+//        const val EXTRA_FRAGMENT = "extra_fragment"
+//        const val FRAGMENT_HOME = "fragment_home"
+//        // Tambahkan konstanta untuk fragment lain jika diperlukan
+//        // const val FRAGMENT_OTHER = "fragment_other"
+//    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
@@ -21,7 +28,6 @@ class DashboardActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_dashboard)
         navView.setupWithNavController(navController)
-
         navView.visibility = View.VISIBLE
         supportFragmentManager.addOnBackStackChangedListener {
             // Logika visibilitas untuk seluruh fragment
@@ -31,7 +37,9 @@ class DashboardActivity : AppCompatActivity() {
             val isDetailDogFragmentVisible = visibleFragments
                 .any { it is DetailDogFragment && it.isVisible}
 
-            if (isDetailDogFragmentVisible) {
+            val isDetailMapsFragmentVisible = visibleFragments
+                .any { it is MapsDetailFragment && it.isVisible }
+            if (isDetailDogFragmentVisible || isDetailMapsFragmentVisible) {
                 Log.d("DashboardActivity", "Hiding navView")
                 navView.visibility = View.GONE
             } else {
