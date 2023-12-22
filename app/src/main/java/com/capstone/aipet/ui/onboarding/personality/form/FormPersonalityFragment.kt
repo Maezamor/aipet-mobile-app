@@ -14,10 +14,12 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.capstone.aipet.DashboardActivity
+import com.capstone.aipet.R
 import com.capstone.aipet.ViewModelFactory
 import com.capstone.aipet.customview.button.ButtonOnBoarding
 import com.capstone.aipet.data.remote.DataResult
 import com.capstone.aipet.databinding.FragmentFormPersonalityBinding
+import com.capstone.aipet.ui.splashscreen.LoadingFragment
 
 class FormPersonalityFragment : Fragment() {
 
@@ -43,15 +45,6 @@ class FormPersonalityFragment : Fragment() {
         intentToDashboard()
         buttonSubmitEnable()
     }
-//    private fun onTestClick() {
-//        binding.btnTest.setOnClickListener {
-//            val intent = Intent(
-//                requireActivity(),
-//                DashboardActivity::class.java
-//            )
-//            requireActivity().startActivity(intent)
-//        }
-//    }
     private fun setButtonSubmitEnable(){
         requestStory = binding.editRescue.text.toString()
         buttonOnBoarding.isEnabled = !requestStory.isNullOrEmpty()
@@ -83,8 +76,11 @@ class FormPersonalityFragment : Fragment() {
                         is DataResult.Success -> {
                             showLoading(false)
                             it.data
-                            val intent = Intent(requireContext(), DashboardActivity::class.java)
-                            startActivity(intent)
+                            val loadFragment = LoadingFragment()
+                            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                            transaction.replace(R.id.frame_container, loadFragment)
+                            transaction.addToBackStack(null)
+                            transaction.commit()
                         }
 
                         is DataResult.Error -> {

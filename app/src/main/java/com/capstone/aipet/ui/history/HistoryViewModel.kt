@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.aipet.data.remote.DataResult
-import com.capstone.aipet.data.remote.response.dogs.DetailDogResponse
 import com.capstone.aipet.data.remote.response.history.HistoryResponse
 import com.capstone.aipet.data.remote.response.history.ItemHistory
 import com.capstone.aipet.data.repository.DogsRepository
@@ -25,14 +24,4 @@ class HistoryViewModel(private val repository: DogsRepository): ViewModel() {
         }
     }
 
-    fun getHistoryById(id: Int) {
-        viewModelScope.launch {
-            try {
-                val response = repository.getHistory(id)
-                _history.value = response
-            } catch (e: Exception) {
-                // Handle error, misalnya tampilkan pesan kesalahan
-            }
-        }
-    }
 }

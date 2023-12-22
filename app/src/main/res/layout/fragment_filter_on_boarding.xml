@@ -1,58 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/default_white"
     tools:context=".ui.onboarding.personality.filter.FilterOnBoardingFragment">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/title_filter"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
-            android:fontFamily="@font/dmsans_bold"
-            android:text="Select the criteria for your dream pet."
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="0dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/title_filter"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/dmsans_bold"
+                android:text="Select the criteria for your dream pet."
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/groubView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dmsans_bold"
-            android:layout_marginTop="20dp"
-            android:text="Groub"
-            android:textSize="17sp"
-            app:layout_constraintStart_toStartOf="@+id/title_filter"
-            app:layout_constraintTop_toBottomOf="@+id/title_filter" />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_listGroub"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/groubView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/ageView"
-            />
+            <TextView
+                android:id="@+id/groubView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dmsans_bold"
+                android:layout_marginTop="20dp"
+                android:text="Groub"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/title_filter"
+                app:layout_constraintTop_toBottomOf="@+id/title_filter" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_listGroub"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/groubView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/ageView"
+                />
 
-        <TextView
-            android:id="@+id/ageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/dmsans_bold"
-            android:text="Age"
-            android:textSize="17sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_listGroub" />
+            <TextView
+                android:id="@+id/ageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/dmsans_bold"
+                android:text="Age"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_listGroub" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_listAge"
@@ -64,17 +66,17 @@
                 app:layout_constraintTop_toBottomOf="@id/ageView"/>
 
 
-        <TextView
-            android:id="@+id/sterilizationView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/dmsans_bold"
-            android:text="Sterilization Status"
-            android:textSize="17sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_listAge" />
+            <TextView
+                android:id="@+id/sterilizationView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/dmsans_bold"
+                android:text="Sterilization Status"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_listAge" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_listSterilization"
@@ -83,39 +85,36 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sterilizationView"/>
-        <com.capstone.aipet.customview.button.ButtonOnBoarding
-            android:id="@+id/btn_onboarding"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginBottom="20dp"
-            android:enabled="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_listSterilization" />
-<!--        <Button-->
-<!--            android:id="@+id/btn_test"-->
-<!--            android:layout_width="188dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:text="Test"-->
-<!--            android:elevation="2dp"-->
-<!--            android:layout_marginVertical="10dp"-->
-<!--            android:fontFamily="@font/dmsans_bold"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:background="@drawable/bg_btn_addopt"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/btn_onboarding" />-->
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+
+            <com.capstone.aipet.customview.button.ButtonOnBoarding
+                android:id="@+id/btn_onboarding"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="50dp"
+                android:enabled="false"
+                app:layout_constraintEnd_toEndOf="@id/rv_listSterilization"
+                app:layout_constraintStart_toStartOf="@id/rv_listSterilization"
+                app:layout_constraintTop_toBottomOf="@+id/rv_listSterilization" />
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/gap_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@+id/btn_onboarding"
+                app:layout_constraintStart_toStartOf="@+id/btn_onboarding"
+                app:layout_constraintTop_toBottomOf="@id/btn_onboarding" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

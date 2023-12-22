@@ -41,7 +41,7 @@
     <string name="history">History</string>
 
 
-<!--    map options   -->
+    <!--    map options   -->
     <string name="normal_type">Normal</string>
     <string name="satellite_type">Satellite</string>
     <string name="terrain_type">Terrain</string>

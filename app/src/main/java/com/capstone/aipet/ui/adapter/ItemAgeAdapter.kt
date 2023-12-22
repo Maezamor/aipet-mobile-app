@@ -25,13 +25,6 @@ class ItemAgeAdapter(private val radioAge: List<Age>,
             }
         }
     }
-    fun getSelectedAge(): String? {
-        return if (selectedPosition != RecyclerView.NO_POSITION) {
-            radioAge[selectedPosition].age
-        } else {
-            null
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =

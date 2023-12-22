@@ -1,6 +1,7 @@
 package com.capstone.aipet.ui.profile
 
 import android.content.Intent
+import android.net.Uri
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -50,6 +51,11 @@ class ProfileFragment : Fragment() {
         }
         binding.buttonHealthservice.setOnClickListener{
             val intent = Intent(requireContext(), PetCareActivity::class.java)
+            startActivity(intent)
+        }
+        binding.buttonWeb.setOnClickListener {
+            val link = "https://aipet.id"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
             startActivity(intent)
         }
     }

@@ -65,7 +65,6 @@ class FilterOnBoardingFragment : Fragment() {
     private fun setUpAdapter(){
         val ageAdapter = ItemAgeAdapter(ageList) { selectedText ->
             Log.d("FilterOnBoardingFragment", "Age List Size: ${ageList.size}")
-            Toast.makeText(requireContext(), "Age selected : $selectedText", Toast.LENGTH_SHORT).show()
             isAgeSelected = selectedText
             ageCheked = true
             setButtonOnBoardingEnable()
@@ -73,14 +72,12 @@ class FilterOnBoardingFragment : Fragment() {
 
         val sterilizationAdapter = ItemSterilizationAdapter(sterilizationList) { selectedText ->
             Log.d("FilterOnBoardingFragment", "Sterilization List Size: ${sterilizationList.size}")
-            Toast.makeText(requireContext(), "sterilization selected : $selectedText", Toast.LENGTH_SHORT).show()
             isSterilizationSelected = selectedText
             sterilCheked = true
             setButtonOnBoardingEnable()
         }
         val groubAdapter = ItemGroubAdapter(groubList) { selectedText ->
             Log.d("FilterOnBoardingFragment", "Sterilization List Size: ${groubList.size}")
-            Toast.makeText(requireContext(), "Groub selected : $selectedText", Toast.LENGTH_SHORT).show()
             isGroubSelected = selectedText
             groubCheked = true
             setButtonOnBoardingEnable()
@@ -152,21 +149,6 @@ class FilterOnBoardingFragment : Fragment() {
             }
             }
         }
-//    private fun onTestClick(){
-//        binding.btnTest.setOnClickListener{
-//        val matchmakingFragment = MatchmakingFragment()
-//        val fragmentManager = parentFragmentManager
-//        fragmentManager.beginTransaction().apply {
-//            replace(
-//                R.id.frame_container,
-//                matchmakingFragment,
-//                MatchmakingFragment::class.java.simpleName
-//            )
-//            addToBackStack(null)
-//            commit()
-//        }
-//        }
-//    }
     private fun showLoading(state: Boolean){
         binding.progressBar.isVisible = state
 

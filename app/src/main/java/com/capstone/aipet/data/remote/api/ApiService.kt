@@ -3,6 +3,7 @@ package com.capstone.aipet.data.remote.api
 import com.capstone.aipet.data.filterData.sterilization.Sterilization
 import com.capstone.aipet.data.remote.response.checkout.CheckoutResponse
 import com.capstone.aipet.data.remote.response.dogs.DetailDogResponse
+import com.capstone.aipet.data.remote.response.dogs.RecomendationResponse
 import com.capstone.aipet.data.remote.response.dogs.ResponseDogs
 import com.capstone.aipet.data.remote.response.dogs.TestResponse
 import com.capstone.aipet.data.remote.response.history.HistoryResponse
@@ -91,4 +92,6 @@ interface ApiService {
 
     @GET("selter/coordinat/list")
     suspend fun getListShelter():ResponseShelter
+    @GET("onboarding/end")
+    suspend fun getListRecomendation():RecomendationResponse
 }

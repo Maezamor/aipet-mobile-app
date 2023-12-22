@@ -2,10 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <group android:menuCategory="container">
-        <item
-            android:id="@+id/menu_language"
-            android:title="@string/menu_language"
-            app:showAsAction="never"/>
+
         <item
             android:id="@+id/menu_logout"
             android:title="@string/menu_logout"

@@ -59,7 +59,7 @@ class ServicesViewHolder(val view: ItemPetcareBinding): RecyclerView.ViewHolder(
         drawable.start()
 
         Glide.with(itemView.context)
-            .load("https://storage.googleapis.com/aipet-storage/dog-image/34..03.jpg")
+            .load(item.picture)
             .placeholder(drawable)
             .into(view.rvImage)
 

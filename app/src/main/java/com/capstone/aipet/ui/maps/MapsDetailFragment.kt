@@ -1,10 +1,7 @@
 package com.capstone.aipet.ui.maps
 
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import androidx.fragment.app.Fragment
-
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,18 +13,11 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.capstone.aipet.R
-import com.capstone.aipet.ui.home.HomeFragment
-import com.capstone.aipet.ui.home.detaildog.DetailDogFragment
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
@@ -64,36 +54,13 @@ class MapsDetailFragment : Fragment() {
             Log.d("coordinat", "titik :${lat},${lon}")
             Log.d("coordinat", "selter :${shelter}")
             val markerOptions = MarkerOptions()
+
         googleMap.addMarker(
             markerOptions
                 .position(shelterSpace)
                 .title(shelter)
                 .snippet(phone)
         )
-
-
-//            Glide.with(this)
-//                .asBitmap()
-//                .load(picture)
-//                .into(object : CustomTarget<Bitmap>() {
-//                    override fun onResourceReady(
-//                        resource: Bitmap,
-//                        transition: Transition<in Bitmap>?
-//                    ) {
-//                        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resource))
-//        googleMap.addMarker(
-//            markerOptions
-//                .position(shelterSpace)
-//                .title(shelter)
-//                .snippet(description)
-//        )
-//
-//                    }
-//
-//                    override fun onLoadCleared(placeholder: Drawable?) {
-//                        // Jika gambar gagal dimuat, Anda dapat menangani kasus ini di sini
-//                    }
-//                })
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(shelterSpace, 15f))
 
 
@@ -124,7 +91,6 @@ class MapsDetailFragment : Fragment() {
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                // Kembali ke HomeFragment saat tombol back ditekan
                 parentFragmentManager.popBackStack()
             }
         })

@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/dmsans_regular"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
+                android:text="Guiding the Way, Nurturing Paws: Your Companion in Canine Care!"
                 android:textAlignment="center"
                 android:textSize="12sp"
                 android:layout_marginTop="20dp"
@@ -78,5 +78,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_title" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            app:layout_constraintStart_toStartOf="@+id/rv_listGuide"
+            app:layout_constraintTop_toBottomOf="@id/rv_listGuide" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

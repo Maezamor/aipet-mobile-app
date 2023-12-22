@@ -1,56 +1,44 @@
 package com.capstone.aipet.ui.adapter
 
+
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
-import com.capstone.aipet.data.remote.response.dogs.ItemDogs
-import com.capstone.aipet.databinding.ItemDogBinding
+import com.capstone.aipet.data.remote.response.dogs.ItemRecomend
 import com.capstone.aipet.databinding.ItemMatchDogBinding
 
-class ItemMatchDogAdapter  (private val callback: (dogs: ItemDogs) -> Unit)
-: PagingDataAdapter<ItemDogs, MatchDogsViewHolder>(DIFF_CALLBACK) {
+class ItemMatchDogAdapter(private val callback: (recomend: ItemRecomend) -> Unit) : RecyclerView.Adapter<MatchDogsViewHolder>() {
+
+    private var recomendList: List<ItemRecomend?>? = listOf()
+
+    fun submitList(newList: List<ItemRecomend?>?) {
+        recomendList = newList
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchDogsViewHolder {
-        Log.d("ItemDogAdapter", "onCreateViewHolder called")
         val view = ItemMatchDogBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MatchDogsViewHolder(view)
     }
     override fun onBindViewHolder(holder: MatchDogsViewHolder, position: Int) {
-        val item = getItem(position)
+        val item = recomendList?.get(position)
 
-        holder.view.root.setOnClickListener{
-            if (item != null) {
-                Log.d("ItemDogAdapter", "Data pada posisi $position: $item")
-                callback.invoke(item)
-            }else {
-                Log.e("ItemDogAdapter", "Item pada posisi $position adalah null.")
-            }
+        holder.view.root.setOnClickListener {
+            Log.d("ItemMatchDogAdapter", "Data pada posisi $position: $item")
+            callback.invoke(item!!)
         }
-        if (item != null){
-            holder.bind(item)
-        }
+        holder.bind(item!!)
     }
 
-    companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ItemDogs>() {
-            override fun areItemsTheSame(oldItem: ItemDogs, newItem: ItemDogs): Boolean {
-                return oldItem == newItem
-            }
-
-            override fun areContentsTheSame(oldItem: ItemDogs, newItem: ItemDogs): Boolean {
-                return oldItem.id == newItem.id
-            }
-        }
+    override fun getItemCount(): Int {
+        return recomendList?.size ?: 0
     }
-
 }
-
 class MatchDogsViewHolder(val view: ItemMatchDogBinding): RecyclerView.ViewHolder(view.root) {
-    fun bind(item: ItemDogs) {
+    fun bind(item: ItemRecomend) {
         view.rvName.text = item.name
         view.rvGender.text = item.gender
         view.rvCaracter.text = item.character
@@ -62,9 +50,8 @@ class MatchDogsViewHolder(val view: ItemMatchDogBinding): RecyclerView.ViewHolde
         drawable.start()
 
         Glide.with(itemView.context)
-            .load("https://storage.googleapis.com/aipet-storage/dog-image/ivana-la-tycZhR54Ddk-unsplash.jpg")
+            .load(item.picture)
             .placeholder(drawable)
             .into(view.rvImage)
-
     }
 }

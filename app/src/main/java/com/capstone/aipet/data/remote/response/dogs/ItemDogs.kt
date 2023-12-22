@@ -10,7 +10,6 @@ import kotlinx.parcelize.Parcelize
 data class ItemDogs(
         @field:SerializedName("character")
         val character: String,
-
         @field:SerializedName("gender")
         val gender: String,
 

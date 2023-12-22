@@ -14,12 +14,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class DashboardActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDashboardBinding
-//    companion object {
-//        const val EXTRA_FRAGMENT = "extra_fragment"
-//        const val FRAGMENT_HOME = "fragment_home"
-//        // Tambahkan konstanta untuk fragment lain jika diperlukan
-//        // const val FRAGMENT_OTHER = "fragment_other"
-//    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
@@ -30,7 +24,6 @@ class DashboardActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
         navView.visibility = View.VISIBLE
         supportFragmentManager.addOnBackStackChangedListener {
-            // Logika visibilitas untuk seluruh fragment
             val visibleFragments = supportFragmentManager.fragments
             Log.d("DashboardActivity", "Visible Fragments: $visibleFragments")
 

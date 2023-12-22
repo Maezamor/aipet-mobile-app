@@ -15,6 +15,8 @@ data class ResultLogin(
     val phone: String,
     @SerializedName("email")
     val email: String,
+    @SerializedName("status_onbr")
+    val statusOnbr: Boolean,
     @SerializedName("token")
     val token: String,
 )

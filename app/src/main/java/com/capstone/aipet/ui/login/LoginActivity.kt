@@ -97,17 +97,28 @@ class LoginActivity : AppCompatActivity() {
 
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(it.windowToken, 0)
-            loginViewModel.login(email, password).observe(this) { DataResult ->
-                if (DataResult != null) {
-                    when(DataResult) {
+            loginViewModel.login(email, password).observe(this) { dataResult ->
+                if (dataResult != null) {
+                    when(dataResult) {
                         is DataResult.Loading -> {
                             showLoading(true)
                         }
                         is DataResult.Success -> {
-                            processLogin(DataResult.data)
+                            processLogin(dataResult.data)
                             showLoading(false)
-                            val intent = Intent(this, OnboardingActivity::class.java)
-                            startActivity(intent)
+
+                            val userData = dataResult.data.loginResult
+
+                            if (userData.statusOnbr) {
+                                // Jika statusOnbr bernilai true, menuju DashboardActivity
+                                val intent = Intent(this, DashboardActivity::class.java)
+                                startActivity(intent)
+                            } else {
+                                // Jika statusOnbr bernilai false, menuju OnboardingActivity
+                                val intent = Intent(this, OnboardingActivity::class.java)
+                                startActivity(intent)
+                            }
+
                             finish()
                             Toast.makeText(this, getString(R.string.login_sukses), Toast.LENGTH_LONG).show()
                         }
@@ -121,6 +132,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun processLogin(data: ResponseLogin) {
         if (data.errors) {
             Toast.makeText(this, data.message, Toast.LENGTH_LONG).show()

@@ -1,23 +1,20 @@
 package com.capstone.aipet.ui.history
 
-import androidx.lifecycle.ViewModelProvider
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.capstone.aipet.R
 import com.capstone.aipet.ViewModelFactory
 import com.capstone.aipet.data.remote.DataResult
 import com.capstone.aipet.databinding.FragmentHistoryBinding
-import com.capstone.aipet.databinding.FragmentHomeBinding
 import com.capstone.aipet.pref.UserPreference
 import com.capstone.aipet.ui.adapter.ItemHistoryAdapter
-import com.capstone.aipet.ui.home.detaildog.DetailDogViewModel
 
 class HistoryFragment : Fragment() {
 
@@ -43,14 +40,11 @@ class HistoryFragment : Fragment() {
         observeHistoryList()
         val sharedPreferences = UserPreference.init(requireContext(), "onSignIn")
         val userId = sharedPreferences.getInt("id", 0)
-//        viewModel.getHistoryById(userId ?: 0)
         viewModel.getHistoryList(userId ?: 0)
 
     }
     private fun setupRecyclerView() {
-        historyAdapter = ItemHistoryAdapter { selectedHistory ->
-            // Implementasikan logika ketika item history di klik
-            showToast("History di klik: ${selectedHistory.name}")
+        historyAdapter = ItemHistoryAdapter {
         }
 
         binding.rvListHistory.apply {
@@ -63,19 +57,27 @@ class HistoryFragment : Fragment() {
         viewModel.historyList.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is DataResult.Loading -> {
-                    // Tampilkan indikator loading
+                    showLoading(true)
                 }
                 is DataResult.Success -> {
                     // Sembunyikan indikator loading dan tampilkan data
-                    historyAdapter.submitList(result.data)
+                    if (result.data == null || result.data.isEmpty()) {
+                        showToast("Oops sorry you haven't adopted it yet")
+                        binding.rvListHistory.visibility = View.GONE
+                        showLoading(false)
+                    } else {
+                        binding.rvListHistory.visibility = View.VISIBLE
+                        historyAdapter.submitList(result.data)
+                        showLoading(false)
+                    }
                 }
-                is DataResult.Error -> {
-                    // Sembunyikan indikator loading dan tampilkan pesan error
-                    //Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
-                    showToast("error from ${result.error}")
-                }
+
+                else -> {showLoading(false)}
             }
         }
+    }
+    private fun showLoading(state: Boolean){
+        binding.progressBar.isVisible = state
     }
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()

@@ -81,7 +81,7 @@ class SignUpActivity : AppCompatActivity() {
 
                         is DataResult.Error -> {
                             showLoading(false)
-                            Toast.makeText(this, it.error, Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, "Please change your email or username", Toast.LENGTH_LONG).show()
                         }
                     }
                 }
@@ -89,7 +89,7 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
     private fun processRegister(data: ResponseRegister) {
-        if (data.errors == true) {
+        if (data.itemErrors == true) {
             Toast.makeText(this,
                 getString(R.string.regristasi_gagal_periksa_kembali_pengisian_anda), Toast.LENGTH_LONG).show()
         } else {

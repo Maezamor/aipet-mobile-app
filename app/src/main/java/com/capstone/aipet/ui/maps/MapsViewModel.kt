@@ -12,9 +12,7 @@ import com.capstone.aipet.data.repository.ShelterRepository
 import kotlinx.coroutines.launch
 
 class MapsViewModel(private val repository: ShelterRepository): ViewModel() {
-    private val _shelter = MutableLiveData<HistoryResponse>()
-    val shelter: LiveData<HistoryResponse>
-        get() = _shelter
+
     private val _shelterList = MutableLiveData<DataResult<List<ItemShelter>>>()
     val shelterList: LiveData<DataResult<List<ItemShelter>>> get() = _shelterList
     fun getShelterList() {
@@ -23,14 +21,4 @@ class MapsViewModel(private val repository: ShelterRepository): ViewModel() {
             _shelterList.value = repository.getShelter()
         }
     }
-//    fun getHistoryById() {
-//        viewModelScope.launch {
-//            try {
-//                val response = repository.getShelter()
-//                _shelter.value = response
-//            } catch (e: Exception) {
-//                // Handle error, misalnya tampilkan pesan kesalahan
-//            }
-//        }
-//    }
 }

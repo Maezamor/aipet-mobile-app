@@ -64,7 +64,7 @@ class DogsViewHolder(val view: ItemDogBinding): RecyclerView.ViewHolder(view.roo
         drawable.start()
 
         Glide.with(itemView.context)
-            .load("https://storage.googleapis.com/aipet-storage/dog-image/ivana-la-tycZhR54Ddk-unsplash.jpg")
+            .load(item.picture)
             .placeholder(drawable)
             .into(view.rvImage)
 

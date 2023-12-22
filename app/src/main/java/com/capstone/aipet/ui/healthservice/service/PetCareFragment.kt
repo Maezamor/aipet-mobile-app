@@ -49,6 +49,9 @@ class PetCareFragment : Fragment() {
             showLoading(false)
         }
         showRecyclerView()
+        binding.dtBack.setOnClickListener{
+            requireActivity().onBackPressed()
+        }
     }
     private fun showRecyclerView() {
 

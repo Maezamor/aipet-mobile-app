@@ -15,7 +15,6 @@ import com.capstone.aipet.R
 import com.capstone.aipet.ViewModelFactory
 import com.capstone.aipet.data.remote.DataResult
 import com.capstone.aipet.databinding.FragmentDetailDogBinding
-import com.capstone.aipet.ui.home.HomeFragment
 import com.capstone.aipet.ui.maps.MapsDetailFragment
 
 class DetailDogFragment : Fragment() {
@@ -27,8 +26,7 @@ class DetailDogFragment : Fragment() {
     private lateinit var dogName: String
     private var dogId: Int? = null
     private  var dogAvatar: String = ""
-    private lateinit var dogStory: String
-    private var dogType: Int? = null
+    private  var dogStory: String = ""
     private var dogShelter: Int? = null
     private lateinit var  dogAge: String
     private var dogSteril: Int? = null
@@ -52,18 +50,17 @@ class DetailDogFragment : Fragment() {
             dogName = it.getString(EXTRA_NAME, "")
             dogId = it.getInt(EXTRA_ID, 0)
             dogAvatar = it.getString(EXTRA_AVATAR, "")
-            dogStory = it.getString(EXTRA_STORY, "")
             dogShelter = it.getInt(EXTRA_SHELTER, 0)
             dogAge = it.getString(EXTRA_AGE, "")
             dogSteril = it.getInt(EXTRA_STERIL, 0)
         }
         viewModel.getDetailDogById(dogId ?: 0)
-        viewModel.checkoutDog(dogId ?: 0)
         viewModel.detailDog.observe(viewLifecycleOwner) { response ->
 
             val type = response.data?.type?.activityLevel
             val steril = response.data?.gender?.name
             val selter = response.data?.selter?.name
+            dogStory = response.data?.dog?.rescueStory!!
             val imageSelter = response.data?.selter?.picture
             val let = response.data?.selter?.let
             val lon = response.data?.selter?.lon
@@ -82,16 +79,8 @@ class DetailDogFragment : Fragment() {
             binding.breedText.text = type
             binding.nameDogView.text = dogName
             binding.textRescuestory.text = dogStory
-            binding.ageText.text = dogAge
+            binding.ageText.text = "${dogAge} Year"
             binding.selterText.text = selter
-
-//            val bundle = Bundle().apply {
-//                putString("shelterName", selter)
-//                putString("shelterImage", imageSelter)
-//                putString("shelterLet", let)
-//                putString("shelterLon", lon)
-//                putString("shelterDescription", descriptionShelter)
-//            }
 
             detailMapsFragment = MapsDetailFragment()
             detailMapsFragment.arguments = bundle
@@ -106,7 +95,7 @@ class DetailDogFragment : Fragment() {
         }
 
         Glide.with(this)
-            .load("https://storage.googleapis.com/aipet-storage/dog-image/ivana-la-tycZhR54Ddk-unsplash.jpg")
+            .load(dogAvatar)
             .skipMemoryCache(true)
             .into(binding.dtImage)
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
@@ -120,6 +109,7 @@ class DetailDogFragment : Fragment() {
         }
         binding.btnAddopt.setOnClickListener {
                 checkoutDog(dogId)
+            viewModel.checkoutDog(dogId!!)
         }
 
     }
@@ -157,12 +147,9 @@ class DetailDogFragment : Fragment() {
         const val EXTRA_ID = "extra_id"
         const val EXTRA_AVATAR = "extra_avatar"
         const val EXTRA_STORY = "extra_story"
-        const val EXTRA_TYPE = "extra_type"
         const val EXTRA_SHELTER = "extra_shelter"
         const val EXTRA_AGE = "extra_age"
         const val EXTRA_STERIL = "extra_steril"
-
-
     }
 
 }

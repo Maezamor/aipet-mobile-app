@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/dmsans_regular"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
+                android:text="Aipet is not just about finding the perfect pet,it's also about finding the right family for each animal."
                 android:textAlignment="center"
                 android:textSize="12sp"
                 android:layout_marginTop="20dp"
@@ -56,7 +56,6 @@
                 app:layout_constraintStart_toStartOf="@+id/title_guide"
                 app:layout_constraintTop_toBottomOf="@+id/title_guide"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_listHistory"
         android:layout_width="0dp"
@@ -67,5 +66,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_title" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/layout_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 

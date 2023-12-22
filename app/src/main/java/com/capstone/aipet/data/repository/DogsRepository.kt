@@ -7,27 +7,23 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
-import com.capstone.aipet.data.filterData.sterilization.Sterilization
 import com.capstone.aipet.data.remote.DataResult
 import com.capstone.aipet.data.remote.api.ApiService
 import com.capstone.aipet.data.remote.paging.DogsPaging
 import com.capstone.aipet.data.remote.response.checkout.CheckoutResponse
 import com.capstone.aipet.data.remote.response.dogs.DetailDogResponse
 import com.capstone.aipet.data.remote.response.dogs.ItemDogs
-import com.capstone.aipet.data.remote.response.history.HistoryResponse
+import com.capstone.aipet.data.remote.response.dogs.ItemRecomend
 import com.capstone.aipet.data.remote.response.history.ItemHistory
-import com.capstone.aipet.data.remote.response.login.ResponseLogin
 import com.capstone.aipet.data.remote.response.onboarding.ResponseOnboarding
-import com.capstone.aipet.data.remote.response.rescue.ItemRescue
 import com.capstone.aipet.data.remote.response.rescue.ResponseRescue
-import retrofit2.Response
 
 class DogsRepository(
     private val apiService: ApiService) {
     fun getDogs(): LiveData<PagingData<ItemDogs>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 5
+                pageSize = 100
             ),
             pagingSourceFactory = {
                 DogsPaging(apiService)
@@ -49,9 +45,7 @@ class DogsRepository(
     suspend fun getDetailDogs(id: Int): DetailDogResponse {
         return apiService.getDetailDogs(id)
     }
-    suspend fun getHistory(id: Int): HistoryResponse {
-        return apiService.historyAdoption(id)
-    }
+
     suspend fun getHistoryList(userId: Int): DataResult<List<ItemHistory>> {
         return try {
             val response = apiService.historyAdoption(userId)
@@ -102,6 +96,15 @@ class DogsRepository(
 
     suspend fun getRescue(): ResponseRescue {
         return apiService.getRescue()
+    }
+
+    suspend fun getRecomendation(): DataResult<List<ItemRecomend?>?> {
+        return try {
+            val response = apiService.getListRecomendation()
+            DataResult.Success(response.data)
+        } catch (e: Exception) {
+            DataResult.Error(e.message ?: "Terjadi kesalahan saat mengambil data riwayat.")
+        }
     }
 
 

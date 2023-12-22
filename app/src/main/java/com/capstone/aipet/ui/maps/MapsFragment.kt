@@ -41,7 +41,6 @@ class MapsFragment : Fragment() {
     private val mapsViewModel: MapsViewModel by viewModels{
         ViewModelFactory(requireActivity())
     }
-
     private val callback = OnMapReadyCallback { map ->
         googleMap = map
         mapsViewModel.shelterList.observe(viewLifecycleOwner) {

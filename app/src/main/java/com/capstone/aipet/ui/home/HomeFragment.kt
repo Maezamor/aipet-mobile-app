@@ -5,7 +5,6 @@ package com.capstone.aipet.ui.home
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.aipet.R
 import com.capstone.aipet.ViewModelFactory
+import com.capstone.aipet.data.remote.DataResult
 import com.capstone.aipet.databinding.FragmentHomeBinding
 import com.capstone.aipet.pref.UserPreference
 import com.capstone.aipet.ui.adapter.ItemDogAdapter
@@ -50,11 +50,6 @@ class HomeFragment : Fragment() {
         onBackPressed()
         binding.HomeAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.menu_language -> {
-                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-                    true
-                }
-
                 R.id.menu_logout -> {
                     UserPreference.logOut(requireContext())
                     val intent = Intent(requireActivity(), LoginActivity::class.java)
@@ -91,7 +86,7 @@ class HomeFragment : Fragment() {
 
             val bundle = Bundle()
             bundle.putString(DetailDogFragment.EXTRA_NAME, dogs.name)
-            bundle.putInt(DetailDogFragment.EXTRA_ID, dogs.id)
+            bundle.putInt(DetailDogFragment.EXTRA_ID, dogs.id!!)
             bundle.putString(DetailDogFragment.EXTRA_AVATAR, dogs.picture)
             bundle.putString(DetailDogFragment.EXTRA_STORY, dogs.rescueStory)
             bundle.putString(DetailDogFragment.EXTRA_AGE, dogs.age)
@@ -123,27 +118,26 @@ class HomeFragment : Fragment() {
             }
             showLoading(false)
         }
-        viewModel.matchDogs.observe(viewLifecycleOwner) { data ->
-            if (data != null) {
-                Log.d("HomeFragment", "Data dari API: $data")
-                showLoading(true)
-                adapter2.submitData(viewLifecycleOwner.lifecycle, data)
-                Log.d("homefragment","data anjing masuk")
-            }else{
-                Log.d("HomeFragment", "Data anjing kosong atau null.")
+        viewModel.historyList.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is DataResult.Loading -> {
+                    // Tampilkan indikator loading
+                }
+
+                is DataResult.Success -> {
+                    // Sembunyikan indikator loading dan tampilkan data
+                    adapter2.submitList(result.data)
+                }
+                else -> {}
             }
-            showLoading(false)
         }
+        viewModel.getRecomendList()
         adapter1.withLoadStateFooter(
             footer = LoadingStateAdapter {
                 adapter1.retry()
             }
         )
-        adapter2.withLoadStateFooter(
-            footer = LoadingStateAdapter {
-                adapter2.retry()
-            }
-        )
+
 
 
         adapter1.addLoadStateListener { loadState ->
@@ -161,24 +155,6 @@ class HomeFragment : Fragment() {
             }
             binding.retryButton.setOnClickListener {
                 adapter1.retry()
-            }
-        }
-
-        adapter2.addLoadStateListener { loadState ->
-            val isListEmpty = loadState.refresh is LoadState.NotLoading && adapter2.itemCount == 0
-            if (isListEmpty) {
-                binding.errorMsg.visibility = View.VISIBLE
-            } else {
-                binding.errorMsg.visibility = View.GONE
-            }
-            binding.errorMsg.visibility = if (loadState.refresh is LoadState.Error) View.VISIBLE else View.GONE
-            binding.retryButton.visibility = if (loadState.refresh is LoadState.Error){
-                View.VISIBLE
-                Log.e("HomeFragment", "Error loading data: ${loadState.refresh}")}else{
-                View.GONE
-            }
-            binding.retryButton.setOnClickListener {
-                adapter2.retry()
             }
         }
     }

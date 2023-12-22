@@ -50,7 +50,7 @@ class HistoryViewHolder(val view: ItemHistoryBinding) : RecyclerView.ViewHolder(
 
         // Gambar menggunakan Glide atau library gambar lainnya
         Glide.with(itemView.context)
-            .load("https://storage.googleapis.com/aipet-storage/dog-image/ivana-la-tycZhR54Ddk-unsplash.jpg")
+            .load(item.picture)
             .into(view.rvImage)
     }
 }

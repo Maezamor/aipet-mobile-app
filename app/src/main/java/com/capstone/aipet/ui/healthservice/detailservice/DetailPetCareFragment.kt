@@ -21,14 +21,12 @@ class DetailPetCareFragment : Fragment() {
     private lateinit var viewModel: DetailPetCareViewModel
     private var _binding: FragmentDetailPetCareBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var serviceName: String
     private lateinit var serviceId: String
     private lateinit var serviceImage: String
     private lateinit var servicePhone: String
     private lateinit var serviceCity: String
     private lateinit var serviceDesc: String
-    private lateinit var serviceAddress: String
     private lateinit var serviceSM1: String
     private lateinit var serviceSM2: String
     private lateinit var serviceSM3: String
@@ -58,23 +56,23 @@ class DetailPetCareFragment : Fragment() {
         binding.textDescription.text = serviceDesc
         binding.namepetcareView.text = serviceName
         Glide.with(this)
-            .load("https://storage.googleapis.com/aipet-storage/dog-image/34..03.jpg")
+            .load(serviceImage)
             .into(binding.dtImage)
 
         binding.imgWa.setOnClickListener{
-            bukaLinkWeb("http://www.dicoding.com")
-        }
-    }
-    fun bukaLinkWeb(linkWeb: String) {
-        val uri = Uri.parse(linkWeb)
-        val intent = Intent(Intent.ACTION_VIEW, uri)
-
-        // Periksa apakah ada aplikasi yang dapat menangani Intent ini
-        if (intent.resolveActivity(requireContext().packageManager) != null) {
+            val link = serviceSM1
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
             startActivity(intent)
-        } else {
-            // Handle kasus jika tidak ada aplikasi yang dapat menangani Intent
-            // Misalnya, tampilkan pesan kepada pengguna atau lakukan tindakan lain.
+        }
+        binding.imgInstagram.setOnClickListener{
+            val link = serviceSM1
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+            startActivity(intent)
+        }
+        binding.imgFb.setOnClickListener{
+            val link = serviceSM1
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+            startActivity(intent)
         }
     }
     companion object{
